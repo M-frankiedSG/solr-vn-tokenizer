@@ -56,14 +56,26 @@ public class VietnameseTokenizer extends Tokenizer {
             tokenize();
         }
 
-        if (!iterator.hasNext()) {
-            return false;
-        }
+        String form = null;
+        do {
+            if (!iterator.hasNext()) {
+                return false;
+            }
+            Word word = iterator.next();
+            form = word.getForm();
+            if(form.length()!=1) break;
+            int cp = form.codePointAt(0);
+            int type = Character.getType(cp);
+            if(type!=Character.CONNECTOR_PUNCTUATION
+               && type!=Character.DASH_PUNCTUATION
+               && type!=Character.END_PUNCTUATION
+               && type!=Character.FINAL_QUOTE_PUNCTUATION
+               && type!=Character.INITIAL_QUOTE_PUNCTUATION
+               && type!=Character.OTHER_PUNCTUATION
+               && type!=Character.START_PUNCTUATION) break;
+        } while(true);
         clearAttributes();
-
-        Word word = iterator.next();
         posIncrAtt.setPositionIncrement(1);
-        String form = word.getForm();
         typeAtt.setType(TypeAttribute.DEFAULT_TYPE);
         Location location = indexOf(preprocessedText, form, offset);
         if (location == null) {

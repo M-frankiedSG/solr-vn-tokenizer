@@ -38,8 +38,8 @@ public class VietnameseAnalyzerTest extends BaseTokenStreamTestCase {
         CharTermAttribute term = ts.addAttribute(CharTermAttribute.class);
         OffsetAttribute offset = ts.getAttribute(OffsetAttribute.class);
         ts.reset();
-        String[] expected = new String[]{"phụ tùng", "xe", "mazda", "bán", "tải", "7", "chỗ", ":", "ống", "dẫn", "gió", "tới", "két", "làm", "mát", "khí", "nạp", "-", "cao su", "lưu hóa", ",", "mới", "100%", ",", "phục vụ", "bhbd", ".", "ms", ":", "1", "d0013246a"};
-        int[] expectedOffset = new int[]{0, 9, 12, 18, 22, 31, 33, 36, 38, 42, 46, 50, 54, 58, 62, 66, 70, 73, 75, 82, 89, 91, 95, 99, 101, 109, 113, 115, 117, 118, 119};
+        String[] expected = new String[]{"phụ tùng", "xe", "mazda", "bán", "tải", "7", "chỗ", "ống", "dẫn", "gió", "tới", "két", "làm", "mát", "khí", "nạp", "cao su", "lưu hóa", "mới", "100%", "phục vụ", "bhbd", "ms", "1", "d0013246a"};
+        int[] expectedOffset = new int[]{0, 9, 12, 18, 22, 31, 33, 38, 42, 46, 50, 54, 58, 62, 66, 70, 75, 82, 91, 95, 101, 109, 115, 118, 119};
 
         for (int i = 0; i < expected.length; i++) {
             assertTrue(ts.incrementToken());
