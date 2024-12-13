@@ -1,6 +1,7 @@
 package org.apache.lucene.analysis.vi;
 
 import org.apache.lucene.analysis.*;
+import org.apache.lucene.analysis.miscellaneous.*;
 import vn.pipeline.VnCoreNLP;
 
 import java.io.IOException;
@@ -66,6 +67,7 @@ public class VietnameseAnalyzer extends StopwordAnalyzerBase {
         final Tokenizer tokenizer = new VietnameseTokenizer(this.vnCoreNLP);
         TokenStream tokenStream = new LowerCaseFilter(tokenizer);
         tokenStream = new StopFilter(tokenStream, stopwords);
+        tokenStream = new ASCIIFoldingFilter(tokenStream, false);
         return new TokenStreamComponents(tokenizer, tokenStream);
     }
 }
